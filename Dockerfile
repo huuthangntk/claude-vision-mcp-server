@@ -1,20 +1,22 @@
-# Use Node.js 20 LTS as base image
-FROM node:20-alpine
+# Use Bun official image
+FROM oven/bun:1-alpine
 
 # Set working directory
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+# Copy package files and source code
+COPY package.json bun.lock* ./
+COPY src ./src
+COPY tsconfig.json smithery.yaml ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Install dependencies (this will auto-build via prepare script)
+RUN bun install --frozen-lockfile
 
-# Copy source code
+# Copy remaining files
 COPY . .
 
-# Build TypeScript
-RUN npm run build
+# Remove dev dependencies to reduce image size  
+RUN bun install --frozen-lockfile --production
 
 # Expose port (default MCP port)
 EXPOSE 8080
@@ -24,7 +26,7 @@ ENV PORT=8080
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:8080/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"
+  CMD bun -e "require('http').get('http://localhost:8080/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"
 
 # Start the server
-CMD ["node", "dist/index.js"]
+CMD ["bun", "run", ".smithery/index.cjs"]
