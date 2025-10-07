@@ -1,30 +1,17 @@
-# Claude Vision & Analysis MCP Server
+# Claude Deep Think MCP Server
 
-A powerful Model Context Protocol (MCP) server that provides deep analytical thinking and multi-perspective image analysis using Anthropic's Claude AI.
+A powerful Model Context Protocol (MCP) server that provides deep analytical thinking and strategic guidance using Anthropic's Claude AI.
 
 ## 🌟 Features
 
-### 1. Deep Think & Analysis (`think`)
+### Deep Think & Analysis (`think`)
 Provides intelligent insights, suggestions, and strategic guidance based on conversation context. Perfect for:
 - Understanding complex requirements
 - Identifying potential pitfalls and best practices
 - Offering alternative approaches
 - Extracting key information for efficient task completion
-
-### 2. Multi-Perspective Image Analysis (`analyze_image`)
-Analyzes images from 3-15 different perspectives including:
-- Overall atmosphere and emotional tone
-- Text and written content
-- Lighting and composition
-- Objects and spatial relationships
-- Technical quality
-- Context and environmental details
-- Symbolic meanings
-- Color psychology
-- And more...
-
-### 3. Quick Image Description (`describe_image`)
-Fast, comprehensive single-pass image description for quick insights.
+- Strategic decision-making
+- Problem-solving and architecture planning
 
 ## 📋 Prerequisites
 
@@ -38,68 +25,60 @@ Fast, comprehensive single-pass image description for quick insights.
 
 ```bash
 cd claude-vision-mcp
-npm install
-# or
 bun install
+# or
+npm install
 ```
 
 ### 2. Configuration
 
-Create a `.env` file (copy from `env.example`):
-
-```bash
-ANTHROPIC_API_KEY=your_api_key_here
-CLAUDE_MODEL=claude-sonnet-4-20250514
-MAX_ITERATIONS=5
-```
+The API key is configured when connecting to the MCP server (see Docker or Cursor setup below).
 
 ### 3. Build
 
 ```bash
-npm run build
-# or
 bun run build
+# or
+npm run build
 ```
 
-### 4. Test Locally
+## 🐳 Docker Setup (Recommended)
+
+### Quick Start
 
 ```bash
-npm run dev
-# or
-bun run dev
+cd claude-vision-mcp
+
+# Create .env file with your API key
+echo "ANTHROPIC_API_KEY=your-key-here" > .env
+echo "CLAUDE_MODEL=claude-sonnet-4-20250514" >> .env
+
+# Start container
+docker-compose up -d
+
+# Check status
+docker ps | grep claude-vision
 ```
 
-This starts a development server with ngrok tunneling for testing in the Smithery playground.
+The container will auto-restart when Docker Desktop launches.
+
+### Docker Configuration
+
+The server runs on `http://localhost:8080/mcp` with the following environment variables:
+- `ANTHROPIC_API_KEY` - Your Claude API key (required)
+- `CLAUDE_MODEL` - Model to use (default: claude-sonnet-4-20250514)
 
 ## 🔧 Usage in Cursor IDE
 
-### Configuration
+### Docker Connection (Recommended)
 
-Add to your `.cursor/mcp.json` (global) or project's `.cursor/mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "claude-vision": {
-      "command": "node",
-      "args": [
-        "/path/to/claude-vision-mcp/dist/index.js"
-      ],
-      "env": {
-        "ANTHROPIC_API_KEY": "your_api_key_here"
-      }
-    }
-  }
-}
-```
-
-Or use the Smithery hosted version:
+Add to your `~/.cursor/mcp.json` or `.cursor/mcp.json`:
 
 ```json
 {
   "mcpServers": {
-    "claude-vision": {
-      "url": "https://server.smithery.ai/@your-username/claude-vision-mcp-server"
+    "Claude Deep Think": {
+      "url": "http://localhost:8080/mcp?apiKey=YOUR_API_KEY&model=claude-sonnet-4-20250514"
     }
   }
 }
@@ -107,94 +86,55 @@ Or use the Smithery hosted version:
 
 ### Tool Usage
 
-Once configured, the Composer Agent can use the tools:
+Once configured, the Composer Agent can use the tool:
 
 **Deep Analysis:**
 ```
-Use the think tool to analyze the best approach for implementing user authentication
+Use the think tool to analyze the best approach for implementing user authentication with OAuth2
 ```
 
-**Image Analysis:**
+**Strategic Planning:**
 ```
-Use analyze_image to examine screenshot.png and identify all UI elements and color schemes
-```
-
-**Quick Description:**
-```
-Describe the image at https://example.com/photo.jpg focusing on text content
+Use the think tool to evaluate microservices vs monolithic architecture for a SaaS platform
 ```
 
-## 🐳 Docker Setup
-
-### Build Image
-
-```bash
-docker build -t claude-vision-mcp .
+**Problem Solving:**
 ```
-
-### Run Container
-
-```bash
-docker run -p 8080:8080 \
-  -e ANTHROPIC_API_KEY=your_api_key \
-  claude-vision-mcp
+Use the think tool to identify potential issues with this database schema design
 ```
-
-### Auto-Start with Docker Desktop
-
-Use the included `docker-compose.yml`:
-
-```bash
-docker-compose up -d
-```
-
-The container will automatically restart when Docker Desktop starts.
-
-## 📦 Deployment to Smithery
-
-1. Push your code to GitHub
-2. Visit [smithery.ai/new](https://smithery.ai/new)
-3. Click "Continue with GitHub"
-4. Select your repository
-5. Choose the `main` branch
-6. Click "Create" to deploy
-
-Users can then install your MCP server directly from the Smithery marketplace!
-
-## 🔑 Configuration Options
-
-When using the hosted version or configuring locally, you can customize:
-
-- **apiKey** (required): Your Anthropic Claude API key
-- **model** (optional): Claude model to use (default: `claude-sonnet-4-20250514`)
-- **maxIterations** (optional): Number of analysis iterations for images (3-15, default: 5)
 
 ## 📚 Examples
 
-### Example 1: Analyzing Design Choices
+### Example 1: Analyzing Technical Decisions
 
 ```
-Context: Building a meditation app landing page
+Use the think tool to analyze:
 
-Tool: think
-Query: What color schemes would work best for a calming, professional meditation app?
+"I'm building a real-time chat application. Should I use WebSockets, SSE, or HTTP polling?"
+
+Context: Need to support 100K concurrent users, prioritize ease of implementation
 ```
 
-### Example 2: Multi-Perspective Image Analysis
+**Expected Output**: Comprehensive comparison with pros, cons, and recommendations
+
+### Example 2: Architecture Planning
 
 ```
-Tool: analyze_image
-Image Source: ./screenshots/homepage.png
-Query: Analyze this webpage design and suggest improvements for user engagement
-Iterations: 7
+Use the think tool to evaluate:
+
+"What's the best way to structure a multi-tenant SaaS application?"
+
+Context: PostgreSQL database, Node.js backend, 50-100 tenants expected
 ```
 
-### Example 3: Quick Text Extraction
+### Example 3: Best Practices
 
 ```
-Tool: describe_image
-Image Source: https://example.com/document.jpg
-Focus: text content
+Use the think tool:
+
+"Review this approach to handling user sessions in a Next.js app"
+
+Context: Using JWT tokens, storing in localStorage, concerned about security
 ```
 
 ## 🛠️ Development
@@ -204,21 +144,21 @@ Focus: text content
 ```
 claude-vision-mcp/
 ├── src/
-│   └── index.ts          # Main MCP server implementation
-├── dist/                 # Compiled JavaScript (generated)
-├── package.json          # Dependencies and scripts
-├── tsconfig.json         # TypeScript configuration
-├── smithery.yaml         # Smithery deployment config
-├── Dockerfile            # Docker container definition
-├── docker-compose.yml    # Docker Compose for auto-start
-└── README.md            # This file
+│   └── index.ts              # Main MCP server implementation
+├── .smithery/
+│   └── index.cjs            # Built server (generated)
+├── package.json              # Dependencies and scripts
+├── tsconfig.json            # TypeScript configuration
+├── smithery.yaml            # Smithery deployment config
+├── Dockerfile               # Docker container definition
+├── docker-compose.yml       # Docker Compose configuration
+└── README.md               # This file
 ```
 
 ### Available Scripts
 
-- `npm run build` - Compile TypeScript to JavaScript
-- `npm run dev` - Start development server with hot reload
-- `npm run prepare` - Pre-publish build step
+- `bun run build` / `npm run build` - Compile TypeScript
+- `bun run dev` / `npm run dev` - Development server with hot reload
 
 ## 🔒 Security Best Practices
 
@@ -227,6 +167,66 @@ claude-vision-mcp/
 3. **Rotate keys regularly** - Update API keys periodically
 4. **Review tool calls** - Keep manual approval enabled in Cursor
 5. **Use development environments** - Test with non-production data
+
+## 📦 Docker Management
+
+```bash
+# Start container
+docker-compose up -d
+
+# View logs
+docker logs claude-vision-mcp-server -f
+
+# Restart container
+docker-compose restart
+
+# Stop container
+docker-compose down
+
+# Rebuild and restart
+docker-compose up -d --build
+```
+
+## 🐛 Troubleshooting
+
+### Issue: Server not connecting in Cursor
+
+**Solutions:**
+1. Verify Docker container is running: `docker ps | grep claude-vision`
+2. Check container logs: `docker logs claude-vision-mcp-server`
+3. Restart Cursor IDE completely
+4. Verify API key in URL is correct
+
+### Issue: API key errors
+
+**Solutions:**
+1. Ensure key starts with `sk-ant-`
+2. Test key at: https://console.anthropic.com/
+3. Check environment variables in container
+4. Verify URL parameter format
+
+### Issue: Container won't start
+
+**Solutions:**
+```bash
+# Check logs
+docker logs claude-vision-mcp-server
+
+# Verify .env file
+cat .env
+
+# Rebuild from scratch
+docker-compose down -v
+docker-compose up -d --build
+```
+
+## 💡 Performance
+
+With Bun runtime:
+- ⚡ 4x faster package installs
+- ⚡ 3-4x faster script execution  
+- 📦 Smaller Docker images
+- 🚀 Faster cold starts
 
 ## 📄 License
 
@@ -241,10 +241,9 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 For issues or questions:
 - Open an issue on GitHub
 - Check the [MCP Documentation](https://modelcontextprotocol.io/)
-- Visit [Smithery.ai Discord](https://smithery.ai/discord)
 
 ## 🙏 Acknowledgments
 
 - Built with [Anthropic Claude API](https://www.anthropic.com/)
 - Powered by [Model Context Protocol](https://modelcontextprotocol.io/)
-- Hosted on [Smithery.ai](https://smithery.ai/)
+- Containerized with [Bun](https://bun.sh/)

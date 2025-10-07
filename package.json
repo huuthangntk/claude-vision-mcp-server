@@ -1,7 +1,7 @@
 {
-  "name": "claude-vision-mcp-server",
+  "name": "claude-deep-think-mcp-server",
   "version": "1.0.0",
-  "description": "MCP Server with Claude Vision and Analysis capabilities",
+  "description": "MCP Server with Claude Deep Think and Analysis capabilities",
   "main": "dist/index.js",
   "module": "./src/index.ts",
   "type": "module",
