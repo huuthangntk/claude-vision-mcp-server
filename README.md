@@ -1,5 +1,7 @@
 # Claude Vision & Analysis MCP Server
 
+[![smithery badge](https://smithery.ai/badge/@huuthangntk/claude-vision-mcp-server)](https://smithery.ai/server/@huuthangntk/claude-vision-mcp-server)
+
 A powerful Model Context Protocol (MCP) server that provides deep analytical thinking and multi-perspective image analysis using Anthropic's Claude AI.
 
 ## 🌟 Features
@@ -36,6 +38,15 @@ Fast, comprehensive single-pass image description for quick insights.
 
 ### 1. Installation
 
+### Installing via Smithery
+
+To install claude-vision-mcp-server automatically via [Smithery](https://smithery.ai/server/@huuthangntk/claude-vision-mcp-server):
+
+```bash
+npx -y @smithery/cli install @huuthangntk/claude-vision-mcp-server
+```
+
+### Manual Installation
 ```bash
 cd claude-vision-mcp
 npm install
