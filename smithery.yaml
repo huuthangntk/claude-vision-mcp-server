@@ -1,0 +1,7 @@
+runtime: "typescript"
+
+startCommand:
+  type: "http"
+
+# Configuration schema is automatically extracted from the TypeScript code
+# via the exported configSchema using Zod

@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  claude-vision-mcp:
+    build: .
+    container_name: claude-vision-mcp-server
+    restart: always  # Auto-restart when Docker Desktop starts
+    ports:
+      - "8080:8080"
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - CLAUDE_MODEL=${CLAUDE_MODEL:-claude-sonnet-4-20250514}
+      - MAX_ITERATIONS=${MAX_ITERATIONS:-5}
+      - PORT=8080
+    volumes:
+      # Mount a directory for accessing local images
+      - ./claude_vision:/app/claude_vision:ro
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:8080/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
