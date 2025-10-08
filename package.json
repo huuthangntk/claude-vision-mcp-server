@@ -1,7 +1,7 @@
 {
   "name": "claude-deep-think-mcp-server",
-  "version": "1.0.0",
-  "description": "MCP Server with Claude Deep Think and Analysis capabilities",
+  "version": "1.0.1",
+  "description": "MCP Server with Claude Sonnet 4.5 for deep analytical thinking, strategic planning, and intelligent problem-solving",
   "main": "dist/index.js",
   "module": "./src/index.ts",
   "type": "module",
@@ -10,7 +10,7 @@
     "build": "smithery build",
     "prepare": "npm run build"
   },
-  "keywords": ["mcp", "claude", "vision", "ai", "analysis"],
+  "keywords": ["mcp", "claude", "thinking", "analysis", "ai", "reasoning", "sonnet"],
   "author": "",
   "license": "MIT",
   "dependencies": {
