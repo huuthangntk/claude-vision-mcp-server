@@ -21,7 +21,7 @@ A powerful Model Context Protocol (MCP) server that provides **proactive deep an
 
 ## 🌟 Features
 
-### Deep Think & Analysis (`think`)
+### Deep Think & Analysis (`claude_think`)
 Provides intelligent insights, suggestions, and strategic guidance **before code implementation**. Perfect for:
 - ✅ Understanding context deeply before acting
 - ✅ Identifying potential pitfalls upfront
@@ -118,7 +118,7 @@ cp claude-vision-mcp/.cursorrules .cursorrules
 **Always use this pattern when new information arrives:**
 
 ```
-Use the think tool to analyze: [NEW INFORMATION]
+Use the claude_think tool to analyze: [NEW INFORMATION]
 
 Context: [Current situation, tech stack, constraints]
 ```
@@ -127,7 +127,7 @@ Context: [Current situation, tech stack, constraints]
 
 **Error Message:**
 ```
-Use the think tool to analyze:
+Use the claude_think tool to analyze:
 
 Error: "TypeError: Cannot read property 'map' of undefined"
 
@@ -136,7 +136,7 @@ Context: React component rendering users from useState hook
 
 **New Feature:**
 ```
-Use the think tool:
+Use the claude_think tool:
 
 Requirement: Add dark mode toggle to header
 
@@ -145,7 +145,7 @@ Context: Next.js 14, need to check if ThemeContext exists
 
 **Performance Issue:**
 ```
-Use the think tool:
+Use the claude_think tool:
 
 Issue: Homepage renders 50+ times, parent causing all children to re-render
 
@@ -157,7 +157,7 @@ Context: useState for theme in Header, passed via props to 20+ children
 ### Example 1: Analyzing Technical Decisions
 
 ```
-Use the think tool to analyze:
+Use the claude_think tool to analyze:
 
 "I'm building a real-time chat application. Should I use WebSockets, SSE, or HTTP polling?"
 
@@ -169,7 +169,7 @@ Context: Need to support 100K concurrent users, prioritize ease of implementatio
 ### Example 2: Architecture Planning
 
 ```
-Use the think tool to evaluate:
+Use the claude_think tool to evaluate:
 
 "What's the best way to structure a multi-tenant SaaS application?"
 
@@ -179,7 +179,7 @@ Context: PostgreSQL database, Node.js backend, 50-100 tenants expected
 ### Example 3: Best Practices
 
 ```
-Use the think tool:
+Use the claude_think tool:
 
 "Review this approach to handling user sessions in a Next.js app"
 
@@ -294,10 +294,10 @@ With Bun runtime:
 ⏱️ Total: 30 minutes, 3 iterations
 ```
 
-### With Think Tool:
+### With Claude_Think Tool:
 ```
 1. User reports error
-2. AI analyzes with think tool (20s)
+2. AI analyzes with claude_think tool (20s)
 3. AI writes comprehensive fix
 4. Works correctly first time
 ⏱️ Total: 5 minutes, 1 iteration

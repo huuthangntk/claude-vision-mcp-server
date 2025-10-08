@@ -2,7 +2,7 @@
 
 ## Critical Rule: Think Before Code
 
-**MANDATORY**: When new information arrives, ALWAYS call the "think" MCP tool BEFORE writing or modifying code.
+**MANDATORY**: When new information arrives, ALWAYS call the "claude_think" MCP tool BEFORE writing or modifying code.
 
 ### New Information Includes:
 - Error messages or stack traces
@@ -19,9 +19,9 @@
 ### Workflow:
 
 1. **NEW INFORMATION ARRIVES** → STOP ⏸️
-2. **CALL THINK TOOL** 🧠
+2. **CALL CLAUDE_THINK TOOL** 🧠
    ```
-   Use the think tool to analyze: [THE NEW INFORMATION]
+   Use the claude_think tool to analyze: [THE NEW INFORMATION]
    
    Context: [Current tech stack, constraints, what you know]
    ```
@@ -44,7 +44,7 @@
 User: Getting "TypeError: Cannot read property 'map' of undefined"
 
 AI: Let me analyze this first.
-[Calls think tool with error + context]
+[Calls claude_think tool with error + context]
 [Reviews analysis]
 [Implements proper solution with loading states]
 ```
@@ -54,7 +54,7 @@ AI: Let me analyze this first.
 User: Add dark mode toggle
 
 AI: Let me understand the requirements first.
-[Calls think tool with feature request + codebase context]
+[Calls claude_think tool with feature request + codebase context]
 [Reviews recommendations]
 [Implements with accessibility and animations]
 ```
@@ -64,12 +64,12 @@ AI: Let me understand the requirements first.
 User: App is slow, 50+ re-renders
 
 AI: Let me analyze the performance issue.
-[Calls think tool with metrics + component structure]
+[Calls claude_think tool with metrics + component structure]
 [Identifies root cause]
 [Implements Context API solution]
 ```
 
-### Skip Think Tool Only For:
+### Skip Claude_Think Tool Only For:
 - Simple typo fixes
 - Trivial text changes  
 - Exact copy-paste requests
@@ -89,4 +89,4 @@ AI: Let me analyze the performance issue.
 > "Think before coding"  
 > "Analysis prevents bugs"
 
-The 20 seconds spent analyzing saves hours of debugging!
+The 20 seconds spent with claude_think saves hours of debugging!
