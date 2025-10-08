@@ -5,7 +5,7 @@ import Anthropic from "@anthropic-ai/sdk";
 // Configuration schema for API key
 export const configSchema = z.object({
   apiKey: z.string().describe("Your Anthropic Claude API key"),
-  model: z.string().default("claude-sonnet-4-20250514").describe("Claude model to use"),
+  model: z.string().default("claude-sonnet-4-5-20250929").describe("Claude model to use"),
 });
 
 export default function createServer({ config }: { config: z.infer<typeof configSchema> }) {
