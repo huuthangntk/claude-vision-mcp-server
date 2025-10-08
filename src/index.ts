@@ -21,16 +21,16 @@ export default function createServer({ config }: { config: z.infer<typeof config
 
   /**
    * Tool: Deep Think and Analyze
-   * Deeply analyzes text prompts and provides intelligent insights
+   * IMPORTANT: Should be called BEFORE writing any code when new information arrives
    */
   server.registerTool(
     "think",
     {
-      title: "Deep Think & Analysis",
-      description: "Analyzes the context and provides intelligent insights, suggestions, and guidelines based on the conversation. Use this when you need to deeply understand a new finding or provide strategic guidance.",
+      title: "Deep Think & Analysis (Call Before Coding)",
+      description: "CRITICAL: Use this tool BEFORE writing or modifying code when new information arrives (errors, requirements, feedback, documentation). This tool analyzes the context deeply to provide intelligent insights, identify pitfalls, suggest best practices, and extract key information that will make the code implementation better, faster, and more reliable. Always call this first when you encounter new findings or need to make code changes.",
       inputSchema: {
-        query: z.string().describe("The prompt or question to analyze deeply"),
-        context: z.string().optional().describe("Additional context from the conversation"),
+        query: z.string().describe("The new information, error, requirement, or problem to analyze before implementing code"),
+        context: z.string().optional().describe("Current codebase context, tech stack, constraints, or previous attempts"),
       },
     },
     async ({ query, context }) => {

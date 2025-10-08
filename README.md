@@ -1,17 +1,37 @@
 # Claude Deep Think MCP Server
 
-A powerful Model Context Protocol (MCP) server that provides deep analytical thinking and strategic guidance using Anthropic's Claude AI.
+A powerful Model Context Protocol (MCP) server that provides **proactive deep analytical thinking** using Anthropic's Claude Sonnet 4.5. This tool is designed to be called **BEFORE writing code** when new information arrives.
+
+## ⚡ Core Concept: Think Before Code
+
+**Use this tool FIRST when new information arrives, BEFORE writing any code:**
+
+- 🐛 Error messages or stack traces
+- 📝 User requirements or feature requests
+- 💬 Code review feedback
+- 🚀 Performance issues
+- 🔒 Security alerts
+- 📚 API documentation to integrate
+- 🗄️ Database problems
+- 💭 UX/UI feedback
+- 🔄 Breaking changes in dependencies
+- 🏗️ Architectural decisions
+
+**Workflow**: New Info → Think Tool → Review Insights → Write Better Code
 
 ## 🌟 Features
 
 ### Deep Think & Analysis (`think`)
-Provides intelligent insights, suggestions, and strategic guidance based on conversation context. Perfect for:
-- Understanding complex requirements
-- Identifying potential pitfalls and best practices
-- Offering alternative approaches
-- Extracting key information for efficient task completion
-- Strategic decision-making
-- Problem-solving and architecture planning
+Provides intelligent insights, suggestions, and strategic guidance **before code implementation**. Perfect for:
+- ✅ Understanding context deeply before acting
+- ✅ Identifying potential pitfalls upfront
+- ✅ Suggesting best practices from the start
+- ✅ Offering alternative approaches
+- ✅ Extracting key information for efficient implementation
+- ✅ Strategic decision-making
+- ✅ Problem-solving and architecture planning
+
+**Result**: Fewer bugs, better code quality, faster development!
 
 ## 📋 Prerequisites
 
@@ -78,29 +98,58 @@ Add to your `~/.cursor/mcp.json` or `.cursor/mcp.json`:
 {
   "mcpServers": {
     "Claude Deep Think": {
-      "url": "http://localhost:8080/mcp?apiKey=YOUR_API_KEY&model=claude-sonnet-4-20250514"
+      "url": "http://localhost:8080/mcp?apiKey=YOUR_API_KEY&model=claude-sonnet-4-5-20250929"
     }
   }
 }
 ```
 
-### Tool Usage
+### Enable Proactive Thinking
 
-Once configured, the Composer Agent can use the tool:
+Copy the `.cursorrules` file from this repo to your project root. This makes Cursor AI automatically use the think tool before writing code.
 
-**Deep Analysis:**
-```
-Use the think tool to analyze the best approach for implementing user authentication with OAuth2
-```
-
-**Strategic Planning:**
-```
-Use the think tool to evaluate microservices vs monolithic architecture for a SaaS platform
+```bash
+# From your project directory
+cp claude-vision-mcp/.cursorrules .cursorrules
 ```
 
-**Problem Solving:**
+### Tool Usage Pattern
+
+**Always use this pattern when new information arrives:**
+
 ```
-Use the think tool to identify potential issues with this database schema design
+Use the think tool to analyze: [NEW INFORMATION]
+
+Context: [Current situation, tech stack, constraints]
+```
+
+**Examples:**
+
+**Error Message:**
+```
+Use the think tool to analyze:
+
+Error: "TypeError: Cannot read property 'map' of undefined"
+
+Context: React component rendering users from useState hook
+```
+
+**New Feature:**
+```
+Use the think tool:
+
+Requirement: Add dark mode toggle to header
+
+Context: Next.js 14, need to check if ThemeContext exists
+```
+
+**Performance Issue:**
+```
+Use the think tool:
+
+Issue: Homepage renders 50+ times, parent causing all children to re-render
+
+Context: useState for theme in Header, passed via props to 20+ children
 ```
 
 ## 📚 Examples
@@ -228,6 +277,34 @@ With Bun runtime:
 - 📦 Smaller Docker images
 - 🚀 Faster cold starts
 
+## 📖 Comprehensive Guides
+
+- **[PROACTIVE_THINKING_WORKFLOW.md](./PROACTIVE_THINKING_WORKFLOW.md)** - Complete workflow guide with before/after examples
+- **[THINK_TOOL_EXAMPLES.md](./THINK_TOOL_EXAMPLES.md)** - 10 real-world usage examples
+- **[.cursorrules](./.cursorrules)** - Cursor IDE rules for automatic think-before-code pattern
+
+## 💡 Why This Workflow?
+
+### Without Think Tool:
+```
+1. User reports error
+2. AI writes quick fix
+3. Fix creates new bug
+4. Multiple iterations needed
+⏱️ Total: 30 minutes, 3 iterations
+```
+
+### With Think Tool:
+```
+1. User reports error
+2. AI analyzes with think tool (20s)
+3. AI writes comprehensive fix
+4. Works correctly first time
+⏱️ Total: 5 minutes, 1 iteration
+```
+
+**Result**: 6x faster, better quality, fewer bugs! 🎉
+
 ## 📄 License
 
 MIT
@@ -241,6 +318,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 For issues or questions:
 - Open an issue on GitHub
 - Check the [MCP Documentation](https://modelcontextprotocol.io/)
+- Read the workflow guides in this repository
 
 ## 🙏 Acknowledgments
 
